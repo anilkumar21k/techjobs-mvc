@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
+
 </head>
 <body>
 
@@ -28,16 +29,40 @@
 
         <p>
             <label for="searchTerm">Keyword:</label>
-            <input type="text" name="searchTerm" id="searchTerm" />
+            <input type="text" name="searchTerm" id="searchTerm"/>
         </p>
 
-        <input type="submit" value="Search" />
+        <input type="submit" value="Search"/>
     </form>
 
-    <hr />
+    <hr/>
 
     <!-- TODO #2 - Loop over jobs map to display all job fields -->
 
+   <!-- <div class="container body-content" >
+        <table class="job-listing">
+            <tr th:each="job : ${jobs}"></tr>
+            <tr th:text="${job}"></tr>
+        </table>
+    </div>
+</div> -->
+
+    <!--<table>
+     <tr th:each="job, idx : ${jobs}" th:class="${idx.odd} ? 'odd'">
+         <td><a th:href="@/search/results(row=${row}, value=${item})}"
+         th:text="${job}"></a></td>
+     </tr>
+ </table> --> <!-- for (joblisting in joblistings){td,header: td, value} -->
+
+ <div> .
+.<h3 th:if="${jobs}" th:text="${jobs.size() +' Number of Jobs'}"></h3>
+    <table th:each = "job : ${jobs}" class="job-listing">
+        <tr th:each = "column : ${job}">
+            <td th:text ="${#strings.capitalizeWords(column.key)}"> </td>
+            <td th:text ="${column.value}"></td>
+        </tr>
+    </table>
+ </div>
 </div>
 
 </body>
